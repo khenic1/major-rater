@@ -1,0 +1,199 @@
+body {
+    font-family: Arial, Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+    padding: 0;
+    margin: 0;
+    background-color:#eeeced;
+}
+
+
+
+/* Global */
+.container {
+    margin: auto;
+    /* overflow: hidden; */
+}
+
+/* Header */
+header {
+    /* padding-top: 30px; */
+    /* min-height: 70px; */
+    background-color:#eeeced;
+}
+
+header button {
+   background-color: #ffe6df;
+   color: #127a80;
+   font-size: 15px;
+    border-radius: 12px;
+    padding: 4px;
+    width: 150px;
+    height: 31px;
+}
+
+.container .branding, .container nav {
+    display: inline-block;
+}
+
+nav ul {
+    list-style-type: none;
+}
+
+nav ul li {
+    display: inline-block;
+}
+.search{
+	position:relative;
+}
+.majorList{
+	    position: absolute;
+}
+.search .search-bar {
+    width: 400px;
+    border-radius: 24px;
+    height: 36px;
+    border: 1px solid gray;
+    padding: 8px;
+    box-shadow: 0px 1px #888888;
+
+}
+
+
+.log-in, .log-out{
+    margin-left: 200px;
+}
+
+#showcase {
+    background-color: #cbe2d0;
+    border-top: 2px solid #c5d8c9;
+    border-bottom: 2px solid #c5d8c9;
+}
+
+#showcase h1 {
+    text-align: center;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    color: #34474d;
+}
+
+#more-info {
+    background-color:#eeeced;
+}
+
+#more-info h4 {
+    text-align: center;
+    padding-top: 100px;
+   padding-bottom: 140px;
+    color: #34474d;
+}
+
+.inform {
+    color: #0e7c81;
+    font-style: italic;
+}
+
+.register, .login  {
+    width: 50%;
+    margin: auto;
+    margin-top: 40px;
+}
+
+.sign-in-anchor {
+    text-align: center;
+    font-size: 13px;
+    margin: 0 auto;
+}
+
+input.middle:focus {
+    outline-width: 0;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+#majorList{
+	position:absolute
+}
+.ui-autocomplete
+{
+    position:absolute;
+    cursor:default;
+    z-index:1001 !important
+}
+
+.ui-front {
+    z-index: 1500 !important;
+}
+@media only screen and (max-width: 1200px) {
+	.log-in, .log-out {
+		margin-left: 175px;
+	}
+	.search .search-bar {
+    width: 326px;
+	}
+}
+
+@media only screen and (max-width: 992px) {
+  .branding {
+    width:100%;
+	text-align:center
+  }
+  .search .search-bar{
+	  width:82%;
+  }
+  nav{
+	  width:100%;
+  }
+  nav ul{
+	  padding:0px;
+  }
+  .search{
+	  width:100%
+  }
+  .log-in, .logout {
+		margin-left: 0;
+		text-align: center;
+		width: 100%;
+		margin-bottom: 16px;
+		margin-top: 15px;
+	}
+	.search .auto{
+		text-align:center
+	}
+}
+
+.add-review-form {
+    margin: auto;
+    width: 60%;
+    margin-top: 50px;
+   
+}
+
+#review-input {
+    margin-bottom: 30px;
+    height: 130px;
+}
+
+.add-review-form button {
+    background-color: #0e7c81;
+    width: 100px;
+}
+
+.reviews-table {
+     margin: auto;
+    width: 60% !important;
+    margin-top: 50px;
+}
+
+.reviews-table tr {
+    background-color: #c0c7ea;
+    border: 2px solid;
+}
+
+.reviews-table td {
+    text-align: center;
+}

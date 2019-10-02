@@ -1,0 +1,14 @@
+ <div style="background-color: white;">
+            <ul>
+                {% if majors|length > 0 %}
+                    {% for major in majors %}
+                    <li><a href="/major/{{major["id"]}}">{{ major["name"]}}</a></li>
+                    <br>
+                    {% endfor %}
+                {% else %}
+                    <li>Major not found</li>
+                    <br>
+                {% endif %}
+            </ul>
+    </div>
+    

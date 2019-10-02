@@ -1,0 +1,129 @@
+<!DOCTYPE html> 
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>Major Rater - Review College Majors</title>
+        <meta name="description" content="Major Rater is the best source of college major reviews and ratings.">
+        <meta name="keywords" content="college review, college majors, university majors, university programs of study, college degree">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='stylesheets/index.css') }}">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.js"></script>
+        <script type="text/javascript" src="http://jzaefferer.github.com/jquery-validation/jquery.validate.js"></script>
+        <script src="http://code.jquery.com/jquery-latest.js"></script>
+       
+        
+        
+            
+
+    </head>
+    <body>
+
+
+
+        <header>
+            <div class="container">
+                <div class="branding">
+                    <img src="{{ url_for('static', filename='logo2.jpg') }}">
+                </div>
+                <nav>
+                    <ul>
+                        <li class="search">
+                            <div class="auto">
+                                <img src="{{ url_for('static', filename='search.png') }}">
+                                <input class="search-bar" type="text" id="major" name="major" aria-label="Search through site content"
+                                    placeholder="Search for a Major">
+                                <div id="majorList">
+                                    
+                    
+                                </div>
+                            </div>
+                        </li>
+                       {% if logged_in %}
+                            <li class="log-out">
+                                <a class="log" href="/logout"><button>LOGOUT</button></a>
+                            </li>
+                       {% else %}
+                        <li class="log-in">
+                            <a class="log" href="/register"><button>LOG IN / SIGN UP</button></a>
+                        </li>
+                       {% endif %}
+                
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <section id="showcase">
+            <div class="container">
+                <h1>See what other students have to say about your major</h1>
+            </div>
+        </section>
+        
+        <!-- <section id="boxes">
+            <div class="container">
+                <div class="box">
+                    <img src="{{ url_for('static', filename='time.png') }}">
+                    <h5>Attending college can take years</h5>
+                </div>
+                <div class="box">
+                    <img src="{{ url_for('static', filename='money.png') }}">
+                    <h5>Attending college can cost thousands</h5>
+                </div>
+                <div class="box">
+                    <img src="{{ url_for('static', filename='job.png') }}">
+                    <h5>Attending college can impact your career opportunities</h5>
+                </div>
+            </div>
+        </section> -->
+
+        <section id="more-info">
+            <h4>Read reviews from other students or post a review to help others become <span class="inform">informed</span></h4>
+        </section>
+
+        <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#major').keyup(function () {
+                    var query = $(this).val();
+                    if (query != '') {
+                        $.ajax({
+                            url: "/search",
+                            method: "POST",
+                            dataType: "html",
+                            data: JSON.stringify({
+                                query: query,
+                            }),
+                            contentType: 'application/json;charset=UTF-8',
+                            // success: function (data) {
+                            //     data = data.data
+                            //     $('#majorList').fadeIn();
+                            //     $('#majorList').html(data)
+                            //     $('#majorList').text(data)
+                            
+                            // },
+                            //   error: function() {
+                            //     $('#majorList').fadeOut();
+                            //     $('#majorList').html("");
+                            // }
+                            })
+                            .done(function (res) {
+                                $('#majorList').fadeIn();
+                                $('#majorList').html(res)  // manipulate the dom when the response comes back
+                            })
+                        
+                    }
+    
+                })
+ 
+            })
+
+            
+
+        </script>
+    </body>
+</html>
+

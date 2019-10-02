@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Major Rater - Review College Majors</title>
+    <meta name="description" content="Major Rater is the best source of college major reviews and ratings.">
+    <meta name="keywords"
+        content="college review, college majors, university majors, university programs of study, college degree">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='stylesheets/index.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.js"></script>
+    <script type="text/javascript" src="http://jzaefferer.github.com/jquery-validation/jquery.validate.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="branding">
+                <a href="/"><img src="{{ url_for('static', filename='logo2.jpg') }}"></a>
+            </div>
+            <nav>
+                <ul>
+                    <li class="search">
+                        <div class="auto">
+                            <img src="{{ url_for('static', filename='search.png') }}">
+                            <input class="search-bar" type="text" id="major" name="major"
+                                aria-label="Search through site content" placeholder="Search for a Major">
+                            <div id="majorList">
+
+
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="log-in">
+                        <a href="/register"><button>LOG IN / SIGN UP</button></a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+
+<form class="register" action="/create_user" method="POST">
+    {% with messages = get_flashed_messages() %}     
+    <!-- declare a variable called messages -->
+        {% if messages %}                            
+    <!-- check if there are any messages -->
+         {% for message in messages %}            
+    <!-- loop through the messages -->
+         <p style="color:red; margin-top: -16px; margin-bottom: -10px;">{{message}}</p>                   
+    <!-- display each message in a paragraph tag -->
+            {% endfor %}
+    {% endif %}
+    {% endwith %}
+    <h3>Join Today</h3>
+    <div class="form-group">
+        <label for="exampleInputUsername">Username</label>
+        <input type="text" class="form-control" id="exampleInputUsername" aria-describedby="usernameHelp" name="username"
+        placeholder="Enter username">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1">Email address</label>
+        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email"
+            placeholder="Enter email">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Password</label>
+        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+<div class="sign-in-anchor">
+    <a href="/show_login">Already have an account? Click to Sign in.</a>
+</div>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#major').keyup(function () {
+            var query = $(this).val();
+            if (query != '') {
+                $.ajax({
+                    url: "/search",
+                    method: "POST",
+                    dataType: "html",
+                    data: JSON.stringify({
+                        query: query,
+                    }),
+                    contentType: 'application/json;charset=UTF-8',
+                    // success: function (data) {
+                    //     data = data.data
+                    //     $('#majorList').fadeIn();
+                    //     $('#majorList').html(data)
+                    //     $('#majorList').text(data)
+
+                    // },
+                    //   error: function() {
+                    //     $('#majorList').fadeOut();
+                    //     $('#majorList').html("");
+                    // }
+                })
+                    .done(function (res) {
+                        $('#majorList').fadeIn();
+                        $('#majorList').html(res)  // manipulate the dom when the response comes back
+                    })
+
+            }
+
+        })
+
+    })
+
+</script>
+
+</body>
